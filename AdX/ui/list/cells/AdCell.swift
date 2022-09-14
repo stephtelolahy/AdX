@@ -35,7 +35,6 @@ class AdCell: UICollectionViewCell {
     func update(with item: ClassifiedAd) {
         nameLabel.text = item.title
         mediaView.image = UIImage(named: "image_placeholder")
-        // TODO: update views
     }
 }
 

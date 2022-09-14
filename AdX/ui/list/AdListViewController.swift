@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class AdListViewController: UIViewController {
     
@@ -15,17 +16,22 @@ class AdListViewController: UIViewController {
     
     // MARK: - Properties
     
+    private lazy var viewModel: AdListViewModel = DIContainer.default.resolveAdListViewModel()
     private lazy var dataSource = makeDataSource()
+    private var subscriptions = Set<AnyCancellable>()
     
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
-        observeData()
+        setupBindings()
+        viewModel.onLoad()
     }
 }
+
+// MARK: - UI Setup
 
 private extension AdListViewController {
     
@@ -60,15 +66,25 @@ private extension AdListViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ])
     }
+}
+
+// MARK: - Binding
+
+private extension AdListViewController {
     
-    func observeData() {
-        let items = AdsService().getAds()
-        var snapshot = NSDiffableDataSourceSnapshot<Int, ClassifiedAd>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(items, toSection: 0)
-        dataSource.apply(snapshot)
+    func setupBindings() {
+        viewModel.$ads
+            .sink { [weak self] items in
+                var snapshot = NSDiffableDataSourceSnapshot<Int, ClassifiedAd>()
+                snapshot.appendSections([0])
+                snapshot.appendItems(items, toSection: 0)
+                self?.dataSource.apply(snapshot)
+            }
+            .store(in: &subscriptions)
     }
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension AdListViewController: UICollectionViewDelegateFlowLayout {
     

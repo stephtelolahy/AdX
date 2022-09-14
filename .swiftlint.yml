@@ -142,5 +142,9 @@ identifier_name:
     - id
     - lhs
     - rhs
+    - url
+    - dto
+    - get
+    - ads
 
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)
