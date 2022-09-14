@@ -8,14 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		261A739328D1FBD20099F37D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A739228D1FBD20099F37D /* AppDelegate.swift */; };
-		261A739528D1FBD20099F37D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A739428D1FBD20099F37D /* SceneDelegate.swift */; };
 		261A739728D1FBD20099F37D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A739628D1FBD20099F37D /* ViewController.swift */; };
-		261A739A28D1FBD20099F37D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 261A739828D1FBD20099F37D /* Main.storyboard */; };
 		261A739C28D1FBD40099F37D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 261A739B28D1FBD40099F37D /* Assets.xcassets */; };
 		261A739F28D1FBD40099F37D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 261A739D28D1FBD40099F37D /* LaunchScreen.storyboard */; };
 		261A73AA28D1FBD40099F37D /* AdXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A73A928D1FBD40099F37D /* AdXTests.swift */; };
-		261A73B428D1FBD40099F37D /* AdXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A73B328D1FBD40099F37D /* AdXUITests.swift */; };
-		261A73B628D1FBD40099F37D /* AdXUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A73B528D1FBD40099F37D /* AdXUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,17 +34,13 @@
 /* Begin PBXFileReference section */
 		261A738F28D1FBD20099F37D /* AdX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		261A739228D1FBD20099F37D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		261A739428D1FBD20099F37D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		261A739628D1FBD20099F37D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		261A739928D1FBD20099F37D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		261A739B28D1FBD40099F37D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		261A739E28D1FBD40099F37D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		261A73A028D1FBD40099F37D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		261A73A528D1FBD40099F37D /* AdXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		261A73A928D1FBD40099F37D /* AdXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdXTests.swift; sourceTree = "<group>"; };
 		261A73AF28D1FBD40099F37D /* AdXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		261A73B328D1FBD40099F37D /* AdXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdXUITests.swift; sourceTree = "<group>"; };
-		261A73B528D1FBD40099F37D /* AdXUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdXUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +73,6 @@
 			children = (
 				261A739128D1FBD20099F37D /* AdX */,
 				261A73A828D1FBD40099F37D /* AdXTests */,
-				261A73B228D1FBD40099F37D /* AdXUITests */,
 				261A739028D1FBD20099F37D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,13 +90,9 @@
 		261A739128D1FBD20099F37D /* AdX */ = {
 			isa = PBXGroup;
 			children = (
-				261A739228D1FBD20099F37D /* AppDelegate.swift */,
-				261A739428D1FBD20099F37D /* SceneDelegate.swift */,
-				261A739628D1FBD20099F37D /* ViewController.swift */,
-				261A739828D1FBD20099F37D /* Main.storyboard */,
-				261A739B28D1FBD40099F37D /* Assets.xcassets */,
-				261A739D28D1FBD40099F37D /* LaunchScreen.storyboard */,
-				261A73A028D1FBD40099F37D /* Info.plist */,
+				261A73C228D1FCDE0099F37D /* app */,
+				261A73C428D1FCF80099F37D /* ui */,
+				261A73C328D1FCE70099F37D /* resources */,
 			);
 			path = AdX;
 			sourceTree = "<group>";
@@ -118,13 +105,30 @@
 			path = AdXTests;
 			sourceTree = "<group>";
 		};
-		261A73B228D1FBD40099F37D /* AdXUITests */ = {
+		261A73C228D1FCDE0099F37D /* app */ = {
 			isa = PBXGroup;
 			children = (
-				261A73B328D1FBD40099F37D /* AdXUITests.swift */,
-				261A73B528D1FBD40099F37D /* AdXUITestsLaunchTests.swift */,
+				261A739228D1FBD20099F37D /* AppDelegate.swift */,
 			);
-			path = AdXUITests;
+			path = app;
+			sourceTree = "<group>";
+		};
+		261A73C328D1FCE70099F37D /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				261A739B28D1FBD40099F37D /* Assets.xcassets */,
+				261A739D28D1FBD40099F37D /* LaunchScreen.storyboard */,
+				261A73A028D1FBD40099F37D /* Info.plist */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		261A73C428D1FCF80099F37D /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				261A739628D1FBD20099F37D /* ViewController.swift */,
+			);
+			path = ui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,6 +138,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 261A73B928D1FBD40099F37D /* Build configuration list for PBXNativeTarget "AdX" */;
 			buildPhases = (
+				261A73C528D1FF2A0099F37D /* Run SwiftLint */,
 				261A738B28D1FBD20099F37D /* Sources */,
 				261A738C28D1FBD20099F37D /* Frameworks */,
 				261A738D28D1FBD20099F37D /* Resources */,
@@ -233,7 +238,6 @@
 			files = (
 				261A739F28D1FBD40099F37D /* LaunchScreen.storyboard in Resources */,
 				261A739C28D1FBD40099F37D /* Assets.xcassets in Resources */,
-				261A739A28D1FBD20099F37D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +257,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		261A73C528D1FF2A0099F37D /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		261A738B28D1FBD20099F37D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -260,7 +285,6 @@
 			files = (
 				261A739728D1FBD20099F37D /* ViewController.swift in Sources */,
 				261A739328D1FBD20099F37D /* AppDelegate.swift in Sources */,
-				261A739528D1FBD20099F37D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +300,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				261A73B628D1FBD40099F37D /* AdXUITestsLaunchTests.swift in Sources */,
-				261A73B428D1FBD40099F37D /* AdXUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +319,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		261A739828D1FBD20099F37D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				261A739928D1FBD20099F37D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		261A739D28D1FBD40099F37D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -366,7 +380,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -420,7 +434,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -441,7 +455,6 @@
 				INFOPLIST_FILE = AdX/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -468,7 +481,6 @@
 				INFOPLIST_FILE = AdX/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -488,7 +500,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -507,7 +518,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
