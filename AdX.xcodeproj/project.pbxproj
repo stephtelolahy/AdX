@@ -43,6 +43,8 @@
 		261A740128D22E560099F37D /* AdListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A73FF28D22E560099F37D /* AdListViewModel.swift */; };
 		261A740728D2669B0099F37D /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A740628D2669B0099F37D /* DIContainer.swift */; };
 		261A740828D2669B0099F37D /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A740628D2669B0099F37D /* DIContainer.swift */; };
+		26E9D1F228D27FA300D322B5 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9D1F128D27FA300D322B5 /* ImageRepository.swift */; };
+		26E9D1F328D27FA300D322B5 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9D1F128D27FA300D322B5 /* ImageRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,7 @@
 		261A73FC28D226C60099F37D /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		261A73FF28D22E560099F37D /* AdListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdListViewModel.swift; sourceTree = "<group>"; };
 		261A740628D2669B0099F37D /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		26E9D1F128D27FA300D322B5 /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				261A73E528D21FAA0099F37D /* AdRepository.swift */,
+				26E9D1F128D27FA300D322B5 /* ImageRepository.swift */,
 				261A73F328D2243C0099F37D /* dto */,
 				261A73F728D225CF0099F37D /* mapping */,
 			);
@@ -413,6 +417,7 @@
 				261A73F128D222D20099F37D /* NetworkingHelpers.swift in Sources */,
 				261A73D528D204510099F37D /* ImagesUrl.swift in Sources */,
 				261A73D928D206DA0099F37D /* UICollectionView+Register.swift in Sources */,
+				26E9D1F228D27FA300D322B5 /* ImageRepository.swift in Sources */,
 				261A739328D1FBD20099F37D /* AppDelegate.swift in Sources */,
 				261A73FD28D226C60099F37D /* DateUtils.swift in Sources */,
 				261A73E628D21FAA0099F37D /* AdRepository.swift in Sources */,
@@ -434,6 +439,7 @@
 				261A73AA28D1FBD40099F37D /* AdXTests.swift in Sources */,
 				261A73E728D21FAA0099F37D /* AdRepository.swift in Sources */,
 				261A73EA28D220720099F37D /* HTTPClient.swift in Sources */,
+				26E9D1F328D27FA300D322B5 /* ImageRepository.swift in Sources */,
 				261A73D628D204510099F37D /* ImagesUrl.swift in Sources */,
 				261A740128D22E560099F37D /* AdListViewModel.swift in Sources */,
 				261A73F228D222D20099F37D /* NetworkingHelpers.swift in Sources */,

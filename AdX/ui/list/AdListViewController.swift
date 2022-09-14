@@ -18,7 +18,7 @@ class AdListViewController: UIViewController {
     
     private lazy var viewModel: AdListViewModel = DIContainer.default.resolveAdListViewModel()
     private lazy var dataSource = makeDataSource()
-    private var subscriptions = Set<AnyCancellable>()
+    private var disposables = Set<AnyCancellable>()
     
     // MARK: - Lifecycle
     
@@ -80,7 +80,7 @@ private extension AdListViewController {
                 snapshot.appendItems(items, toSection: 0)
                 self?.dataSource.apply(snapshot)
             }
-            .store(in: &subscriptions)
+            .store(in: &disposables)
     }
 }
 

@@ -10,12 +10,13 @@ import Foundation
 /// This is a basic implementation that could be improved using `Resolver` library
 ///
 struct DIContainer {
-    private let repository: AdRepositoryProtocol
+    let adRepository: AdRepositoryProtocol
+    let imageRepository: ImageRepositoryProtocol
     
     static let `default` = resolveDependencies()
     
     func resolveAdListViewModel() -> AdListViewModel {
-        AdListViewModel(repository: repository)
+        AdListViewModel(repository: adRepository)
     }
 }
 
@@ -23,8 +24,10 @@ private extension DIContainer {
     
     static func resolveDependencies() -> DIContainer {
         let session = configuredURLSession()
-        let repository = configuredAdRepository(session: session)
-        return DIContainer(repository: repository)
+        let adRepository = configuredAdRepository(session: session)
+        let imageRepository = configureImageRepository(session: session)
+        
+        return DIContainer(adRepository: adRepository, imageRepository: imageRepository)
     }
     
     static func configuredURLSession() -> URLSession {
@@ -39,9 +42,12 @@ private extension DIContainer {
     }
     
     static func configuredAdRepository(session: URLSession) -> AdRepositoryProtocol {
-        // TODO: add to pList file
         AdRepository(client: HTTPClient(session: session,
                                         baseURL: "https://raw.githubusercontent.com/leboncoin/paperclip/master",
                                         bgQueue: DispatchQueue(label: "bg_parse_queue")))
+    }
+    
+    static func configureImageRepository(session: URLSession) -> ImageRepositoryProtocol {
+        ImageRepository(session: session, bgQueue: DispatchQueue(label: "bg_parse_queue"))
     }
 }

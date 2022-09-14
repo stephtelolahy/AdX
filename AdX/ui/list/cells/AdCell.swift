@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class AdCell: UICollectionViewCell {
     
@@ -19,6 +20,11 @@ class AdCell: UICollectionViewCell {
     private let urgentLabel = UILabel()
     private let dateLabel = UILabel()
     
+    // MARK: - Properties
+    
+    private lazy var imageRepository = DIContainer.default.imageRepository
+    private var disposables = Set<AnyCancellable>()
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
@@ -30,11 +36,35 @@ class AdCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposables.forEach { $0.cancel() }
+        disposables.removeAll()
+    }
+    
     // MARK: - Update
     
     func update(with item: ClassifiedAd) {
         nameLabel.text = item.title
+        updateImageView(item.images.small)
+    }
+    
+    private func updateImageView(_ urlString: String) {
         mediaView.image = UIImage(named: "image_placeholder")
+        
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        imageRepository.load(imageURL: url)
+            .sink(receiveCompletion: { _ in
+            }, receiveValue: { [weak self] image in
+                self?.mediaView.image = image
+            })
+            .store(in: &disposables)
     }
 }
 
