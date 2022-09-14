@@ -54,8 +54,6 @@ opt_in_rules: # some rules are only to opt-in
   - multiline_function_chains
   - multiline_parameters
   - nimble_operator
-  - nslocalizedstring_key
-  - object_literal
   - operator_usage_whitespace
   - optional_enum_case_matching
   - overridden_super_call
@@ -63,7 +61,6 @@ opt_in_rules: # some rules are only to opt-in
   - pattern_matching_keywords
   - prefer_nimble
   - prefer_self_in_static_references
-  - prefer_self_type_over_type_of_self
   - prefer_zero_over_explicit_init
   - prefixed_toplevel_constant
   - private_action
@@ -85,7 +82,6 @@ opt_in_rules: # some rules are only to opt-in
   - test_case_accessibility
   - toggle_bool
   - typesafe_array_init
-  - unavailable_function
   - unneeded_parentheses_in_closure_argument
   - unowned_variable_capture
   - untyped_error_in_catch

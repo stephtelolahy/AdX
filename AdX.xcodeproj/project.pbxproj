@@ -20,6 +20,11 @@
 		261A73D328D203890099F37D /* AdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A73D128D203890099F37D /* AdService.swift */; };
 		261A73D528D204510099F37D /* ImagesUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A73D428D204510099F37D /* ImagesUrl.swift */; };
 		261A73D628D204510099F37D /* ImagesUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A73D428D204510099F37D /* ImagesUrl.swift */; };
+		261A73D928D206DA0099F37D /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A73D828D206DA0099F37D /* UICollectionView+Register.swift */; };
+		261A73DD28D207DE0099F37D /* AdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A73DC28D207DE0099F37D /* AdCell.swift */; };
+		261A73DF28D20B4F0099F37D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 261A73DE28D20B4F0099F37D /* Localizable.strings */; };
+		261A73E128D20B990099F37D /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A73E028D20B990099F37D /* String+Localized.swift */; };
+		261A73E328D20BBE0099F37D /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261A73E228D20BBE0099F37D /* NSObject+ClassName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,11 @@
 		261A73CC28D2029D0099F37D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		261A73D128D203890099F37D /* AdService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdService.swift; sourceTree = "<group>"; };
 		261A73D428D204510099F37D /* ImagesUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesUrl.swift; sourceTree = "<group>"; };
+		261A73D828D206DA0099F37D /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
+		261A73DC28D207DE0099F37D /* AdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCell.swift; sourceTree = "<group>"; };
+		261A73DE28D20B4F0099F37D /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		261A73E028D20B990099F37D /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
+		261A73E228D20BBE0099F37D /* NSObject+ClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassName.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +114,8 @@
 			children = (
 				261A73C228D1FCDE0099F37D /* app */,
 				261A73C428D1FCF80099F37D /* ui */,
-				261A73D028D203270099F37D /* domain */,
+				261A73D028D203270099F37D /* data */,
+				261A73D728D2064E0099F37D /* misc */,
 				261A73C328D1FCE70099F37D /* resources */,
 			);
 			path = AdX;
@@ -132,6 +143,7 @@
 				261A739B28D1FBD40099F37D /* Assets.xcassets */,
 				261A739D28D1FBD40099F37D /* LaunchScreen.storyboard */,
 				261A73A028D1FBD40099F37D /* Info.plist */,
+				261A73DE28D20B4F0099F37D /* Localizable.strings */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -148,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				261A739628D1FBD20099F37D /* AdListViewController.swift */,
+				261A73DC28D207DE0099F37D /* AdCell.swift */,
 			);
 			path = list;
 			sourceTree = "<group>";
@@ -170,13 +183,23 @@
 			path = services;
 			sourceTree = "<group>";
 		};
-		261A73D028D203270099F37D /* domain */ = {
+		261A73D028D203270099F37D /* data */ = {
 			isa = PBXGroup;
 			children = (
 				261A73C828D202450099F37D /* models */,
 				261A73CF28D203170099F37D /* services */,
 			);
-			path = domain;
+			path = data;
+			sourceTree = "<group>";
+		};
+		261A73D728D2064E0099F37D /* misc */ = {
+			isa = PBXGroup;
+			children = (
+				261A73D828D206DA0099F37D /* UICollectionView+Register.swift */,
+				261A73E028D20B990099F37D /* String+Localized.swift */,
+				261A73E228D20BBE0099F37D /* NSObject+ClassName.swift */,
+			);
+			path = misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				261A739F28D1FBD40099F37D /* LaunchScreen.storyboard in Resources */,
+				261A73DF28D20B4F0099F37D /* Localizable.strings in Resources */,
 				261A739C28D1FBD40099F37D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,10 +355,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				261A73DD28D207DE0099F37D /* AdCell.swift in Sources */,
 				261A739728D1FBD20099F37D /* AdListViewController.swift in Sources */,
 				261A73CA28D2026C0099F37D /* ClassifiedAd.swift in Sources */,
 				261A73D228D203890099F37D /* AdService.swift in Sources */,
+				261A73E128D20B990099F37D /* String+Localized.swift in Sources */,
+				261A73E328D20BBE0099F37D /* NSObject+ClassName.swift in Sources */,
 				261A73D528D204510099F37D /* ImagesUrl.swift in Sources */,
+				261A73D928D206DA0099F37D /* UICollectionView+Register.swift in Sources */,
 				261A739328D1FBD20099F37D /* AppDelegate.swift in Sources */,
 				261A73CD28D2029D0099F37D /* Category.swift in Sources */,
 			);

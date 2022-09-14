@@ -16,3 +16,14 @@ struct ClassifiedAd {
     let images: ImagesUrl
     let price: Decimal
 }
+
+extension ClassifiedAd: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: ClassifiedAd, rhs: ClassifiedAd) -> Bool {
+        lhs.id == rhs.id
+    }
+}
