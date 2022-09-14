@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Root view controller
-        let rootVC = ViewController()
+        let rootVC = AdListViewController()
         let navController = UINavigationController(rootViewController: rootVC)
         
         // Setup window
