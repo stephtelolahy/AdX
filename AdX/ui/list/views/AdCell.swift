@@ -13,17 +13,12 @@ class AdCell: UICollectionViewCell {
     // MARK: - SubViews
     
     private let contentStack = UIStackView()
-    private let nameLabel = UILabel()
-    private let mediaView = UIImageView()
+    private let imageView = UIImageView()
+    private let titleLabel = UILabel()
     private let priceLabel = UILabel()
     private let categoryLabel = UILabel()
     private let urgentLabel = UILabel()
     private let dateLabel = UILabel()
-    
-    // MARK: - Properties
-    
-    private lazy var imageRepository = DIContainer.default.imageRepository
-    private var disposables = Set<AnyCancellable>()
     
     // MARK: - Init
     
@@ -36,35 +31,11 @@ class AdCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Lifecycle
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        disposables.forEach { $0.cancel() }
-        disposables.removeAll()
-    }
-    
     // MARK: - Update
     
     func update(with item: ClassifiedAd) {
-        nameLabel.text = item.title
-        updateImageView(item.images.small)
-    }
-    
-    private func updateImageView(_ urlString: String) {
-        mediaView.image = UIImage(named: "image_placeholder")
-        
-        guard let url = URL(string: urlString) else {
-            return
-        }
-        
-        imageRepository.load(imageURL: url)
-            .sink(receiveCompletion: { _ in
-            }, receiveValue: { [weak self] image in
-                self?.mediaView.image = image
-            })
-            .store(in: &disposables)
+        titleLabel.text = item.title
+        imageView.load(url: URL(string: item.images.small), placeholder: UIImage(named: "image_placeholder"))
     }
 }
 
@@ -74,8 +45,8 @@ private extension AdCell {
         contentView.backgroundColor = .systemBackground
         contentView.layer.cornerRadius = 4.0
         setupContentStack()
-        setupMediaView()
-        setupNameLabel()
+        setupImageView()
+        setupTitleLabel()
         setupPriceView()
         setupDateView()
         setupUrgentView()
@@ -99,23 +70,23 @@ private extension AdCell {
         ])
     }
     
-    func setupNameLabel() {
-        nameLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        nameLabel.textColor = .label
-        nameLabel.numberOfLines = 0
-        nameLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        contentStack.addArrangedSubview(nameLabel)
+    func setupTitleLabel() {
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        titleLabel.textColor = .label
+        titleLabel.numberOfLines = 0
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        contentStack.addArrangedSubview(titleLabel)
     }
     
-    func setupMediaView() {
-        mediaView.layer.cornerRadius = 4
-        mediaView.layer.masksToBounds = true
-        mediaView.contentMode = .scaleAspectFit
-        contentStack.addArrangedSubview(mediaView)
+    func setupImageView() {
+        imageView.layer.cornerRadius = 4
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFit
+        contentStack.addArrangedSubview(imageView)
         
         NSLayoutConstraint.activate([
-            mediaView.widthAnchor.constraint(equalTo: contentStack.widthAnchor),
-            mediaView.heightAnchor.constraint(equalToConstant: 80.0)
+            imageView.widthAnchor.constraint(equalTo: contentStack.widthAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 80.0)
         ])
     }
     

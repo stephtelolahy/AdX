@@ -13,17 +13,17 @@ struct HTTPClient {
     let baseURL: String
     let bgQueue: DispatchQueue
     
-    func request<Value: Decodable>(_ type: Value.Type,
-                                   path: String,
-                                   method: HTTPMethod = .get,
-                                   headers: [String: String]? = nil) -> AnyPublisher<Value, Error> {
+    func request<T: Decodable>(_ type: T.Type,
+                               path: String,
+                               method: HTTPMethod = .get,
+                               headers: [String: String]? = nil) -> AnyPublisher<T, Error> {
         do {
             let request = try urlRequest(path: path, method: method, headers: headers)
             return session
                 .dataTaskPublisher(for: request)
                 .requestJSON(httpCodes: .success)
         } catch {
-            return Fail<Value, Error>(error: error).eraseToAnyPublisher()
+            return Fail<T, Error>(error: error).eraseToAnyPublisher()
         }
     }
 }
@@ -62,9 +62,9 @@ extension Publisher where Output == URLSession.DataTaskPublisher.Output {
 
 private extension Publisher where Output == URLSession.DataTaskPublisher.Output {
     
-    func requestJSON<Value>(httpCodes: HTTPCodes) -> AnyPublisher<Value, Error> where Value: Decodable {
+    func requestJSON<T>(httpCodes: HTTPCodes) -> AnyPublisher<T, Error> where T: Decodable {
         requestData(httpCodes: httpCodes)
-            .decode(type: Value.self, decoder: JSONDecoder())
+            .decode(type: T.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

@@ -9,14 +9,16 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Root view controller
-        let rootVC = AdListViewController()
-        let navController = UINavigationController(rootViewController: rootVC)
+        let navController = UINavigationController()
+        let navigator = Navigator(navController, dependencies: DIContainer.default)
+        let adListVC = DIContainer.default.resolveAdListViewController(navigator: navigator)
+        navController.setViewControllers([adListVC], animated: false)
         
         // Setup window
         self.window = UIWindow(frame: UIScreen.main.bounds)

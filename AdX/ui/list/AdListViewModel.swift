@@ -10,29 +10,31 @@ import Foundation
 
 class AdListViewModel {
     
-    // MARK: - States
+    // MARK: - State
     
-    @Published private(set) var ads: [ClassifiedAd] = []
+    @Published private(set) var state: Loadable<[ClassifiedAd]> = .loading
     
-    // MARK: - Private properties
+    // MARK: - Properties
     
-    private var disposables = Set<AnyCancellable>()
     private let repository: AdRepositoryProtocol
+    private let navigator: NavigatorProtocol
+    private var disposables = Set<AnyCancellable>()
     
     // MARK: - Init
     
-    init(repository: AdRepositoryProtocol) {
+    init(repository: AdRepositoryProtocol, navigator: NavigatorProtocol) {
         self.repository = repository
+        self.navigator = navigator
     }
     
     // MARK: - Events
     
     func onLoad() {
         repository.loadAds()
-            .sink(receiveCompletion: { value in
+            .sink(receiveCompletion: { [weak self] value in
                 switch value {
-                case .failure:
-                    break // TODO: handle error
+                case let .failure(error):
+                    self?.state = .failed(error)
                     
                 case .finished:
                     break
@@ -42,8 +44,16 @@ class AdListViewModel {
                     return
                 }
                 
-                self.ads = ads
+                self.state = .loaded(ads)
             })
             .store(in: &disposables)
+    }
+    
+    func onSelectItem(at index: Int) {
+        guard case let .loaded(items) = state else {
+            return
+        }
+        
+        navigator.toAdDetails(items[index])
     }
 }

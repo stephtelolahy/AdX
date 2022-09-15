@@ -42,7 +42,6 @@ opt_in_rules: # some rules are only to opt-in
   - function_default_parameter_at_end
   - identical_operands
   - implicit_return
-  - implicitly_unwrapped_optional
   - joined_default_parameter
   - last_where
   - legacy_multiple
@@ -146,5 +145,7 @@ identifier_name:
     - dto
     - get
     - ads
+    - ad
+    - key
 
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)
