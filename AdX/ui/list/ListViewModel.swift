@@ -1,5 +1,5 @@
 //
-//  AdListViewModel.swift
+//  ListViewModel.swift
 //  AdX
 //
 //  Created by TELOLAHY Hugues Stéphano on 14/09/2022.
@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-class AdListViewModel {
+class ListViewModel {
     
     // MARK: - State
     
@@ -54,6 +54,11 @@ class AdListViewModel {
             return
         }
         
-        navigator.toAdDetails(items[index])
+        navigator.toDetails(items[index])
     }
+    
+    func onFilter() {
+        navigator.toFilter()
+    }
+    
 }

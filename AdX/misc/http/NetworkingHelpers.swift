@@ -7,7 +7,7 @@
 
 import Combine
 import Foundation
-
+/*
 extension Just where Output == Void {
     static func withErrorType<E>(_ errorType: E.Type) -> AnyPublisher<Void, E> {
         withErrorType((), E.self)
@@ -22,7 +22,7 @@ extension Just {
             .eraseToAnyPublisher()
     }
 }
-
+*/
 extension Publisher {
     func sinkToResult(_ result: @escaping (Result<Output, Failure>) -> Void) -> AnyCancellable {
         sink(receiveCompletion: { completion in

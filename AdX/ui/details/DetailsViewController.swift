@@ -1,5 +1,5 @@
 //
-//  AdDetailsViewController.swift
+//  DetailsViewController.swift
 //  AdX
 //
 //  Created by TELOLAHY Hugues Stéphano on 15/09/2022.
@@ -8,17 +8,17 @@
 import UIKit
 import Combine
 
-class AdDetailsViewController: UIViewController {
+class DetailsViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let viewModel: AdDetailsViewModel
+    private let viewModel: DetailsViewModel
     private var disposables = Set<AnyCancellable>()
-    private let detailsView = AdDetailsView()
+    private let detailsView = DetailsView()
     
     // MARK: - Init
     
-    init(viewModel: AdDetailsViewModel) {
+    init(viewModel: DetailsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -39,7 +39,7 @@ class AdDetailsViewController: UIViewController {
 
 // MARK: - UI Setup
 
-private extension AdDetailsViewController {
+private extension DetailsViewController {
     
     func setupView() {
         view.backgroundColor = .systemBackground
@@ -59,7 +59,7 @@ private extension AdDetailsViewController {
 
 // MARK: - Binding
 
-private extension AdDetailsViewController {
+private extension DetailsViewController {
     
     func setupBindings() {
         viewModel.$state

@@ -6,5 +6,6 @@
 //
 
 protocol NavigatorProtocol {
-    func toAdDetails(_ ad: ClassifiedAd)
+    func toDetails(_ ad: ClassifiedAd)
+    func toFilter()
 }

@@ -8,7 +8,8 @@
 import UIKit
 
 protocol NavigatorDependencies {
-    func resolveAdDetailsViewController(_ ad: ClassifiedAd) -> AdDetailsViewController
+    func resolveDetailsViewController(_ ad: ClassifiedAd) -> DetailsViewController
+    func resolveFilterViewController() -> FilterViewController
 }
 
 class Navigator: NavigatorProtocol {
@@ -21,7 +22,11 @@ class Navigator: NavigatorProtocol {
         self.dependencies = dependencies
     }
     
-    func toAdDetails(_ ad: ClassifiedAd) {
-        navController?.pushViewController(dependencies.resolveAdDetailsViewController(ad), animated: true)
+    func toDetails(_ ad: ClassifiedAd) {
+        navController?.pushViewController(dependencies.resolveDetailsViewController(ad), animated: true)
+    }
+    
+    func toFilter() {
+        navController?.present(dependencies.resolveFilterViewController(), animated: true)
     }
 }

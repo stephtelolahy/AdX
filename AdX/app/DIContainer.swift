@@ -50,14 +50,19 @@ private extension DIContainer {
 
 extension DIContainer: NavigatorDependencies {
     
-    func resolveAdListViewController(navigator: NavigatorProtocol) -> AdListViewController {
-        let viewModel = AdListViewModel(repository: adRepository, navigator: navigator)
-        return AdListViewController(viewModel: viewModel)
+    func resolveListViewController(navigator: NavigatorProtocol) -> ListViewController {
+        let viewModel = ListViewModel(repository: adRepository, navigator: navigator)
+        return ListViewController(viewModel: viewModel)
     }
     
-    func resolveAdDetailsViewController(_ ad: ClassifiedAd) -> AdDetailsViewController {
-        let viewModel = AdDetailsViewModel()
+    func resolveDetailsViewController(_ ad: ClassifiedAd) -> DetailsViewController {
+        let viewModel = DetailsViewModel()
         viewModel.initialize(with: ad)
-        return AdDetailsViewController(viewModel: viewModel)
+        return DetailsViewController(viewModel: viewModel)
+    }
+    
+    func resolveFilterViewController() -> FilterViewController {
+        let viewModel = FilterViewModel(repository: adRepository)
+        return FilterViewController(viewModel: viewModel)
     }
 }

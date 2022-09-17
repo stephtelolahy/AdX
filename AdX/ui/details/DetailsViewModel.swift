@@ -1,5 +1,5 @@
 //
-//  AdDetailsViewModel.swift
+//  DetailsViewModel.swift
 //  AdX
 //
 //  Created by TELOLAHY Hugues Stéphano on 15/09/2022.
@@ -7,7 +7,7 @@
 
 import Combine
 
-class AdDetailsViewModel {
+class DetailsViewModel {
     
     // MARK: - State
     

@@ -5,4 +5,6 @@
   Created by TELOLAHY Hugues Stéphano on 14/09/2022.
   
 */
-ad_list_title = "AdX";
+list_title = "AdX";
+filter_title = "Filtrer par catégorie";
+filter_validate_button = "Voir les %d résultats";

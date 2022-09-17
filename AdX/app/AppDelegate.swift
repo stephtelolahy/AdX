@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Root view controller
         let navController = UINavigationController()
         let navigator = Navigator(navController, dependencies: DIContainer.default)
-        let adListVC = DIContainer.default.resolveAdListViewController(navigator: navigator)
-        navController.setViewControllers([adListVC], animated: false)
+        let rootVC = DIContainer.default.resolveListViewController(navigator: navigator)
+        navController.setViewControllers([rootVC], animated: false)
         
         // Setup window
         self.window = UIWindow(frame: UIScreen.main.bounds)

@@ -1,5 +1,5 @@
 //
-//  AdDetailsView.swift
+//  DetailsView.swift
 //  AdX
 //
 //  Created by TELOLAHY Hugues Stéphano on 16/09/2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AdDetailsView: UIView {
+class DetailsView: UIView {
     
     // MARK: - Properties
     
@@ -56,7 +56,7 @@ class AdDetailsView: UIView {
 
 // MARK: - Setup View
 
-private extension AdDetailsView {
+private extension DetailsView {
     
     func setupView() {
         // Scroll view

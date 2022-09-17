@@ -12,7 +12,7 @@ class ListViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let viewModel: AdListViewModel
+    private let viewModel: ListViewModel
     private lazy var dataSource = makeDataSource()
     private var disposables = Set<AnyCancellable>()
     
@@ -20,7 +20,7 @@ class ListViewController: UIViewController {
     
     // MARK: - Init
     
-    init(viewModel: AdListViewModel) {
+    init(viewModel: ListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -47,7 +47,7 @@ private extension ListViewController {
     func setupView() {
         view.backgroundColor = .systemBackground
         
-        title = "ad_list_title".localized()
+        title = "list_title".localized()
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(cellType: AdCell.self)
