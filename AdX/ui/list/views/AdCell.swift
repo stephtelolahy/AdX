@@ -12,13 +12,13 @@ class AdCell: UICollectionViewCell {
     
     // MARK: - SubViews
     
-    private let contentStack = UIStackView()
-    private let imageView = UIImageView()
-    private let titleLabel = UILabel()
-    private let priceLabel = UILabel()
-    private let categoryLabel = UILabel()
-    private let urgentLabel = UILabel()
-    private let dateLabel = UILabel()
+    @UsesAutoLayout private var contentStack = UIStackView()
+    @UsesAutoLayout private var imageView = UIImageView()
+    @UsesAutoLayout private var titleLabel = UILabel()
+    @UsesAutoLayout private var priceLabel = UILabel()
+    @UsesAutoLayout private var categoryLabel = UILabel()
+    @UsesAutoLayout private var urgentLabel = UILabel()
+    @UsesAutoLayout private var dateLabel = UILabel()
     
     // MARK: - Init
     
@@ -36,6 +36,7 @@ class AdCell: UICollectionViewCell {
     func update(with item: ClassifiedAd) {
         titleLabel.text = item.title
         imageView.load(url: URL(string: item.images.small), placeholder: UIImage(named: "image_placeholder"))
+        categoryLabel.text = item.category.name
     }
 }
 
@@ -44,50 +45,59 @@ private extension AdCell {
     func setupView() {
         contentView.backgroundColor = .systemBackground
         contentView.layer.cornerRadius = 4.0
-        setupContentStack()
+        
         setupImageView()
+        setupContentStack()
+        setupCategoryLabel()
         setupTitleLabel()
         setupPriceView()
         setupDateView()
         setupUrgentView()
-        setupCategoryView()
-    }
-    
-    func setupContentStack() {
-        contentStack.axis = .vertical
-        contentStack.alignment = .leading
-        contentStack.spacing = 12
-        contentStack.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        contentStack.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        contentStack.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(contentStack)
-        
-        NSLayoutConstraint.activate([
-            contentStack.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 8),
-            contentStack.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            contentStack.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-            contentStack.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
-        ])
-    }
-    
-    func setupTitleLabel() {
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .body)
-        titleLabel.textColor = .label
-        titleLabel.numberOfLines = 0
-        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        contentStack.addArrangedSubview(titleLabel)
     }
     
     func setupImageView() {
         imageView.layer.cornerRadius = 4
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFit
-        contentStack.addArrangedSubview(imageView)
+        contentView.addSubview(imageView)
         
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalTo: contentStack.widthAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 80.0)
         ])
+    }
+    
+    func setupContentStack() {
+        contentStack.axis = .vertical
+        contentStack.alignment = .leading
+        contentStack.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        contentStack.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        contentView.addSubview(contentStack)
+        
+        NSLayoutConstraint.activate([
+            contentStack.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 8),
+            contentStack.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            contentStack.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
+            contentStack.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
+        ])
+    }
+    
+    func setupCategoryLabel() {
+        categoryLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        categoryLabel.textColor = .darkGray
+        categoryLabel.numberOfLines = 1
+        categoryLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        contentStack.addArrangedSubview(categoryLabel)
+    }
+    
+    func setupTitleLabel() {
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        titleLabel.textColor = .label
+        titleLabel.numberOfLines = 2
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        contentStack.addArrangedSubview(titleLabel)
     }
     
     func setupPriceView() {
@@ -99,10 +109,6 @@ private extension AdCell {
     }
     
     func setupUrgentView() {
-        
-    }
-    
-    func setupCategoryView() {
         
     }
 }

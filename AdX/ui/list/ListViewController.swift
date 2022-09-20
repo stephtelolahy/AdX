@@ -12,22 +12,12 @@ class ListViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let viewModel: ListViewModel
+    var viewModel: ListViewModel!
     private lazy var dataSource = makeDataSource()
     private var disposables = Set<AnyCancellable>()
     
-    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
-    // MARK: - Init
-    
-    init(viewModel: ListViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    @UsesAutoLayout private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private var filterButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
     
@@ -49,7 +39,6 @@ private extension ListViewController {
         
         title = "list_title".localized()
         
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(cellType: AdCell.self)
         collectionView.dataSource = dataSource
         collectionView.delegate = self
@@ -64,8 +53,8 @@ private extension ListViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ])
         
-        let filter = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(filterTapped))
-        navigationItem.rightBarButtonItems = [filter]
+        filterButton = UIBarButtonItem(title: "".localized(), style: .done, target: self, action: #selector(filterTapped))
+        navigationItem.rightBarButtonItems = [filterButton]
     }
     
     @objc
@@ -97,6 +86,14 @@ private extension ListViewController {
                     self?.dataSource.apply(snapshot)
                 }
                 // TODO: handle other states
+            }
+            .store(in: &disposables)
+        
+        viewModel.filtersCountPublisher
+            .sink { [weak self] value in
+                let count: String = value > 0 ? String(value) : "+"
+                self?.filterButton.title = "\("filter_filter_button".localized()) (\(count))"
+                
             }
             .store(in: &disposables)
     }

@@ -7,5 +7,6 @@
 
 protocol NavigatorProtocol {
     func toDetails(_ ad: ClassifiedAd)
-    func toFilter()
+    func toFilter(_ filters: [CategoryFilter], completion: (([CategoryFilter]) -> Void)?)
+    func dismiss()
 }

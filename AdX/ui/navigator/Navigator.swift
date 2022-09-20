@@ -8,25 +8,37 @@
 import UIKit
 
 protocol NavigatorDependencies {
+    func resolveListViewController() -> ListViewController
     func resolveDetailsViewController(_ ad: ClassifiedAd) -> DetailsViewController
-    func resolveFilterViewController() -> FilterViewController
+    func resolveFilterViewController(_ filters: [CategoryFilter], completion: (([CategoryFilter]) -> Void)?) -> FilterViewController
 }
 
 class Navigator: NavigatorProtocol {
     
-    private weak var navController: UINavigationController?
+    private weak var viewController: UIViewController?
     private let dependencies: NavigatorDependencies
     
-    init(_ navController: UINavigationController, dependencies: NavigatorDependencies) {
-        self.navController = navController
+    init(_ viewController: UIViewController, dependencies: NavigatorDependencies) {
+        self.viewController = viewController
         self.dependencies = dependencies
     }
     
     func toDetails(_ ad: ClassifiedAd) {
-        navController?.pushViewController(dependencies.resolveDetailsViewController(ad), animated: true)
+        let vc = dependencies.resolveDetailsViewController(ad)
+        viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func toFilter() {
-        navController?.present(dependencies.resolveFilterViewController(), animated: true)
+    func toFilter(_ filters: [CategoryFilter], completion: (([CategoryFilter]) -> Void)?) {
+        let vc = dependencies.resolveFilterViewController(filters, completion: completion)
+        if #available(iOS 15.0, *) {
+            if let sheet = vc.sheetPresentationController {
+                sheet.prefersGrabberVisible = true
+            }
+        }
+        viewController?.present(vc, animated: true)
+    }
+    
+    func dismiss() {
+        viewController?.dismiss(animated: true)
     }
 }

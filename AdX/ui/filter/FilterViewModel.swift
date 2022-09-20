@@ -13,38 +13,39 @@ class FilterViewModel {
     
     @Published private(set) var filters: [CategoryFilter] = []
     
+    var resultsCountPublisher: AnyPublisher<Int, Never> {
+        $filters
+            .map { $0.resultsCount }
+            .eraseToAnyPublisher()
+    }
+    
     // MARK: - Properties
     
-    private let repository: AdRepositoryProtocol
-    private var disposables = Set<AnyCancellable>()
+    private let navigator: NavigatorProtocol
+    private var completion: (([CategoryFilter]) -> Void)?
     
     // MARK: - Init
     
-    init(repository: AdRepositoryProtocol) {
-        self.repository = repository
+    init(navigator: NavigatorProtocol) {
+        self.navigator = navigator
+    }
+    
+    // MARK: - Arguments
+    
+    func initialize(with filters: [CategoryFilter], completion: (([CategoryFilter]) -> Void)?) {
+        self.filters = filters
+        self.completion = completion
     }
     
     // MARK: - Events
     
-    func onLoad() {
-        repository.loadCategories()
-            .sink(receiveCompletion: { _ in
-            }, receiveValue: { [weak self] categories in
-                guard let self = self else {
-                    return
-                }
-                
-                self.filters = categories.map { CategoryFilter(id: $0.id,
-                                                               name: $0.name,
-                                                               count: 0,
-                                                               isSelected: false)
-                }
-            })
-            .store(in: &disposables)
-    }
-    
     func onSelectItem(at index: Int) {
         filters[index] = filters[index].toggled()
+    }
+    
+    func onValidate() {
+        completion?(filters)
+        navigator.dismiss()
     }
 }
 
@@ -55,5 +56,19 @@ private extension CategoryFilter {
                        name: name,
                        count: count,
                        isSelected: !isSelected)
+    }
+}
+
+private extension Array where Element == CategoryFilter {
+    
+    var resultsCount: Int {
+        var active = self.filter { $0.isSelected }
+        if active.isEmpty {
+            active = self
+        }
+        
+        return active.reduce(0) { result, filter in
+            result + filter.count
+        }
     }
 }

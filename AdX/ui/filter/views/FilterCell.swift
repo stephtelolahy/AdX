@@ -1,5 +1,5 @@
 //
-//  CategoryCell.swift
+//  FilterCell.swift
 //  AdX
 //
 //  Created by TELOLAHY Hugues Stéphano on 17/09/2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryCell: UITableViewCell {
+class FilterCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -18,8 +18,8 @@ class CategoryCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(with category: CategoryFilter) {
-        textLabel?.text = category.name
-        accessoryType = category.isSelected ? .checkmark : .none
+    func update(with filter: CategoryFilter) {
+        textLabel?.text = "\(filter.name) (\(filter.count))"
+        accessoryType = filter.isSelected ? .checkmark : .none
     }
 }

@@ -11,12 +11,12 @@ class DetailsView: UIView {
     
     // MARK: - Properties
     
-    private let scrollView = UIScrollView()
-    private let contentView = UIView()
-    private let imageView = UIImageView()
-    private let contentStack = UIStackView()
-    private let titleLabel = UILabel()
-    private let descriptionLabel = UILabel()
+    @UsesAutoLayout private var scrollView = UIScrollView()
+    @UsesAutoLayout private var contentView = UIView()
+    @UsesAutoLayout private var imageView = UIImageView()
+    @UsesAutoLayout private var contentStack = UIStackView()
+    @UsesAutoLayout private var titleLabel = UILabel()
+    @UsesAutoLayout private var descriptionLabel = UILabel()
     
     private var isInitialized: Bool = false
     private var activeConstraints: [NSLayoutConstraint] = []
@@ -61,28 +61,23 @@ private extension DetailsView {
     func setupView() {
         // Scroll view
         scrollView.alwaysBounceVertical = true
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         addSubview(scrollView)
         
         // Content view
-        contentView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(contentView)
         
         // Image view
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(imageView)
         
         // Stack View
-        contentStack.translatesAutoresizingMaskIntoConstraints = false
         contentStack.axis = .vertical
         contentStack.alignment = .leading
         contentStack.spacing = 16
         contentView.addSubview(contentStack)
         
         // Title label
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         titleLabel.setContentHuggingPriority(.defaultLow - 1, for: .horizontal)
         titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
@@ -90,7 +85,6 @@ private extension DetailsView {
         contentStack.addArrangedSubview(titleLabel)
         
         // Description label
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
         descriptionLabel.numberOfLines = 0
         contentStack.addArrangedSubview(descriptionLabel)

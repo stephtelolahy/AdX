@@ -12,20 +12,10 @@ class DetailsViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let viewModel: DetailsViewModel
+    var viewModel: DetailsViewModel!
     private var disposables = Set<AnyCancellable>()
-    private let detailsView = DetailsView()
     
-    // MARK: - Init
-    
-    init(viewModel: DetailsViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    @UsesAutoLayout private var detailsView = DetailsView()
     
     // MARK: - Lifecycle
     
@@ -44,8 +34,6 @@ private extension DetailsViewController {
     func setupView() {
         view.backgroundColor = .systemBackground
         
-        detailsView.translatesAutoresizingMaskIntoConstraints = false
-        //        detailsView.update(viewModel: self.viewModel)
         view.addSubview(detailsView)
         
         NSLayoutConstraint.activate([

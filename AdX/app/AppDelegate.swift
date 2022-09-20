@@ -15,10 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Root view controller
-        let navController = UINavigationController()
-        let navigator = Navigator(navController, dependencies: DIContainer.default)
-        let rootVC = DIContainer.default.resolveListViewController(navigator: navigator)
-        navController.setViewControllers([rootVC], animated: false)
+        let rootVC = DIContainer.default.resolveListViewController()
+        let navController = UINavigationController(rootViewController: rootVC)
         
         // Setup window
         self.window = UIWindow(frame: UIScreen.main.bounds)
