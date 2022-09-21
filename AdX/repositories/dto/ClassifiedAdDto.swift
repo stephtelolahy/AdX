@@ -18,7 +18,7 @@ struct ClassifiedAdDto: Decodable {
     let description: String?
     let is_urgent: Bool?
     let images_url: ImagesUrlDto?
-    let price: Decimal?
+    let price: Double?
     let siret: String?
 }
 

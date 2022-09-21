@@ -17,6 +17,10 @@ class DetailsView: UIView {
     @UsesAutoLayout private var contentStack = UIStackView()
     @UsesAutoLayout private var titleLabel = UILabel()
     @UsesAutoLayout private var descriptionLabel = UILabel()
+    @UsesAutoLayout private var categoryLabel = UILabel()
+    @UsesAutoLayout private var urgentLabel = UILabel()
+    @UsesAutoLayout private var dateLabel = UILabel()
+    @UsesAutoLayout private var cartButton = UIButton(type: .custom)
     
     private var isInitialized: Bool = false
     private var activeConstraints: [NSLayoutConstraint] = []
@@ -47,10 +51,19 @@ class DetailsView: UIView {
     
     // MARK: - Update
     
-    func update(with ad: ClassifiedAd) {
-        imageView.load(url: URL(string: ad.images.thumb), placeholder: UIImage(named: "image_placeholder"))
-        titleLabel.text = ad.title
-        descriptionLabel.text = ad.desc
+    func update(with item: ClassifiedAd) {
+        imageView.load(url: URL(string: item.images.thumb), placeholder: UIImage(named: "image_placeholder"))
+        titleLabel.text = item.title
+        descriptionLabel.text = item.desc
+        cartButton.setTitle(item.price.formattedPrice, for: .normal)
+        categoryLabel.text = item.category.name
+        urgentLabel.isHidden = !item.isUrgent
+        if let creationDate = item.creationDate {
+            let dateString = DateUtils.format(date: creationDate, with: "dd/MM/yyyy")
+            dateLabel.text = String(format: "list_item_published_at".localized(), dateString)
+        } else {
+            dateLabel.text = nil
+        }
     }
 }
 
@@ -59,6 +72,20 @@ class DetailsView: UIView {
 private extension DetailsView {
     
     func setupView() {
+        
+        // Add to cart
+        cartButton.setTitleColor(.white, for: .normal)
+        cartButton.backgroundColor = .systemRed
+        cartButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        addSubview(cartButton)
+        
+        NSLayoutConstraint.activate([
+            cartButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            cartButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            cartButton.heightAnchor.constraint(equalToConstant: 64),
+            cartButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+        ])
+        
         // Scroll view
         scrollView.alwaysBounceVertical = true
         scrollView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
@@ -74,8 +101,22 @@ private extension DetailsView {
         // Stack View
         contentStack.axis = .vertical
         contentStack.alignment = .leading
-        contentStack.spacing = 16
+        contentStack.spacing = 8
         contentView.addSubview(contentStack)
+        
+        urgentLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        urgentLabel.text = " \("list_item_urgent".localized().uppercased()) "
+        urgentLabel.textColor = .white
+        urgentLabel.backgroundColor = .systemRed
+        urgentLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        contentStack.addArrangedSubview(urgentLabel)
+        
+        // Category label
+        categoryLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        categoryLabel.textColor = .darkGray
+        categoryLabel.numberOfLines = 1
+        categoryLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        contentStack.addArrangedSubview(categoryLabel)
         
         // Title label
         titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -88,6 +129,12 @@ private extension DetailsView {
         descriptionLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
         descriptionLabel.numberOfLines = 0
         contentStack.addArrangedSubview(descriptionLabel)
+        
+        // Description label
+        dateLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        dateLabel.textColor = .darkGray
+        dateLabel.numberOfLines = 0
+        contentStack.addArrangedSubview(dateLabel)
     }
     
     private func updateConstraints(for size: CGSize) {
@@ -101,7 +148,7 @@ private extension DetailsView {
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+            scrollView.bottomAnchor.constraint(equalTo: cartButton.topAnchor)
         ])
         
         let isRegular = traitCollection.horizontalSizeClass == .regular

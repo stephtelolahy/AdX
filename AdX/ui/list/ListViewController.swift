@@ -17,6 +17,7 @@ class ListViewController: UIViewController {
     private var disposables = Set<AnyCancellable>()
     
     @UsesAutoLayout private var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    @UsesAutoLayout private var messsageLabel = UILabel()
     private var filterButton: UIBarButtonItem!
     
     // MARK: - Lifecycle
@@ -53,6 +54,17 @@ private extension ListViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ])
         
+        messsageLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        messsageLabel.textAlignment = .center
+        messsageLabel.textColor = .darkGray
+        view.addSubview(messsageLabel)
+        
+        NSLayoutConstraint.activate([
+            messsageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            messsageLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            messsageLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
         filterButton = UIBarButtonItem(title: "".localized(), style: .done, target: self, action: #selector(filterTapped))
         navigationItem.rightBarButtonItems = [filterButton]
     }
@@ -79,13 +91,21 @@ private extension ListViewController {
     func setupBindings() {
         viewModel.$state
             .sink { [weak self] value in
-                if case let .loaded(items) = value {
+                
+                switch value {
+                case let .loaded(items):
                     var snapshot = NSDiffableDataSourceSnapshot<Int, ClassifiedAd>()
                     snapshot.appendSections([0])
                     snapshot.appendItems(items, toSection: 0)
                     self?.dataSource.apply(snapshot)
+                    self?.messsageLabel.text = nil
+                    
+                case let .failed(error):
+                    self?.messsageLabel.text = error.localizedDescription
+                    
+                case .loading:
+                    self?.messsageLabel.text = "list_loading".localized()
                 }
-                // TODO: handle other states
             }
             .store(in: &disposables)
         
@@ -106,7 +126,7 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfCell = UIDevice.current.userInterfaceIdiom == .pad ? Constant.iPadItemsPerRow : Constant.iPhoneItemsPerRow
         let cellWidth = (UIScreen.main.bounds.size.width - (numberOfCell + 2) * Constant.padding) / numberOfCell
-        return CGSize(width: cellWidth, height: cellWidth)
+        return CGSize(width: cellWidth, height: Constant.cellHeight)
     }
 }
 
@@ -121,4 +141,5 @@ private enum Constant {
     static let iPhoneItemsPerRow: CGFloat = 2
     static let iPadItemsPerRow: CGFloat = 3
     static let padding: CGFloat = 8
+    static let cellHeight: CGFloat = 220
 }

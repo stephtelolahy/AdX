@@ -55,7 +55,6 @@ private extension DetailsViewController {
                 if case let .loaded(ad) = value {
                     self?.detailsView.update(with: ad)
                 }
-                // TODO: handle other states
             }
             .store(in: &disposables)
     }

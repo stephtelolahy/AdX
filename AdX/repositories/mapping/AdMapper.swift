@@ -7,6 +7,8 @@
 
 /// Safely mapping DTO objects to application models
 ///
+import Foundation
+
 enum AdMapper {
     
     static func map(dto: ClassifiedAdDto) -> ClassifiedAd? {
@@ -24,7 +26,7 @@ enum AdMapper {
         return ClassifiedAd(id: id,
                             title: title,
                             category: Category(id: catId, name: ""),
-                            creationDate: DateUtils.date(from: creationDate, with: "yyyy-MM-dd'T'HH:mm:ss"),
+                            creationDate: DateUtils.date(from: creationDate, with: "yyyy-MM-dd'T'HH:mm:ssZ"),
                             desc: desc,
                             isUrgent: isUrgent,
                             images: map(dto: images),

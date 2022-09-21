@@ -14,7 +14,7 @@ struct ClassifiedAd {
     let desc: String
     let isUrgent: Bool
     let images: ImagesUrl
-    let price: Decimal
+    let price: Double
 }
 
 extension ClassifiedAd: Hashable {

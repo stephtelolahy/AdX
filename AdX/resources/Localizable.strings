@@ -6,6 +6,9 @@
   
 */
 list_title = "Annonces";
+list_loading = "Chargement ...";
+list_item_urgent = "Offre Flash";
+list_item_published_at = "Publié le %@";
 filter_filter_button = "Filtres";
 filter_title = "Filtrer par catégorie";
 filter_validate_button = "Voir les %d résultats";

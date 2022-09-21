@@ -66,6 +66,8 @@
 		26E12A9F28D7991700727D2F /* CategoryFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E12A9E28D7991600727D2F /* CategoryFilter.swift */; };
 		26E9D1F228D27FA300D322B5 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9D1F128D27FA300D322B5 /* ImageRepository.swift */; };
 		26E9D1F328D27FA300D322B5 /* ImageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9D1F128D27FA300D322B5 /* ImageRepository.swift */; };
+		26F5AAD928DBBA0100833F94 /* Double+FormatPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F5AAD828DBBA0100833F94 /* Double+FormatPrice.swift */; };
+		26F5AADA28DBBA0100833F94 /* Double+FormatPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F5AAD828DBBA0100833F94 /* Double+FormatPrice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +124,7 @@
 		2696F2BB28D6018C00742FD7 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		26E12A9E28D7991600727D2F /* CategoryFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryFilter.swift; sourceTree = "<group>"; };
 		26E9D1F128D27FA300D322B5 /* ImageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepository.swift; sourceTree = "<group>"; };
+		26F5AAD828DBBA0100833F94 /* Double+FormatPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+FormatPrice.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +276,7 @@
 				261A73E028D20B990099F37D /* String+Localized.swift */,
 				261A73E228D20BBE0099F37D /* NSObject+ClassName.swift */,
 				260EA6D828D456DF004344EE /* UIImageView+LoadUrl.swift */,
+				26F5AAD828DBBA0100833F94 /* Double+FormatPrice.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -495,6 +499,7 @@
 				261A73DD28D207DE0099F37D /* AdCell.swift in Sources */,
 				261A739728D1FBD20099F37D /* ListViewController.swift in Sources */,
 				261A73E928D220720099F37D /* HTTPClient.swift in Sources */,
+				26F5AAD928DBBA0100833F94 /* Double+FormatPrice.swift in Sources */,
 				261A73F928D225E50099F37D /* AdMapper.swift in Sources */,
 				261A73CA28D2026C0099F37D /* ClassifiedAd.swift in Sources */,
 				2696F2B828D600CC00742FD7 /* UITableView+RegisterType.swift in Sources */,
@@ -543,6 +548,7 @@
 				261A73D628D204510099F37D /* ImagesUrl.swift in Sources */,
 				2695DB3F28D38FFC002E1FD7 /* Loadable.swift in Sources */,
 				2696F2A828D5FA7400742FD7 /* CategoryDto.swift in Sources */,
+				26F5AADA28DBBA0100833F94 /* Double+FormatPrice.swift in Sources */,
 				261A740128D22E560099F37D /* ListViewModel.swift in Sources */,
 				2695DB3C28D38FCC002E1FD7 /* DetailsViewModel.swift in Sources */,
 				261A73F228D222D20099F37D /* NetworkingHelpers.swift in Sources */,
