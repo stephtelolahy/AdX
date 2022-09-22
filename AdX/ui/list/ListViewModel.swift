@@ -49,7 +49,7 @@ class ListViewModel {
                     self?.state = .failed(error)
                 }
             }, receiveValue: { [weak self] value in
-                self?.process(ads: value.0, categories: value.1)
+                self?.buildAds(value.0, categories: value.1)
             })
             .store(in: &disposables)
     }
@@ -64,15 +64,15 @@ class ListViewModel {
     
     func onFilter() {
         navigator.toFilter(filters) { [weak self] result in
-            self?.processFilter(filters: result)
+            self?.applyFilters(result)
         }
     }
 }
 
 private extension ListViewModel {
     
-    func process(ads: [ClassifiedAd], categories: [Category]) {
-        let fullAds: [ClassifiedAd] = ads.compactMap { ad in
+    func buildAds(_ ads: [ClassifiedAd], categories: [Category]) {
+        self.allAds = ads.compactMap { ad in
             guard let category = categories.first(where: { $0.id == ad.category.id }) else {
                 return nil
             }
@@ -80,26 +80,27 @@ private extension ListViewModel {
             return ad.copy(category: category)
             
         }
-        self.state = .loaded(fullAds)
         
-        self.filters = categories.map { category in CategoryFilter(id: category.id,
-                                                                   name: category.name,
-                                                                   count: ads.filter { $0.category.id == category.id }.count,
-                                                                   isSelected: false)
+        let filters = categories.map { category in CategoryFilter(id: category.id,
+                                                                  name: category.name,
+                                                                  count: ads.filter { $0.category.id == category.id }.count,
+                                                                  isSelected: false)
         }
         
-        self.allAds = fullAds
+        applyFilters(filters)
     }
     
-    func processFilter(filters: [CategoryFilter]) {
+    func applyFilters(_ filters: [CategoryFilter]) {
         self.filters = filters
         let active = filters.filter { $0.isSelected }.map { $0.id }
-        guard !active.isEmpty else {
-            self.state = .loaded(allAds)
-            return
+        var filteredAds: [ClassifiedAd]
+        if active.isEmpty {
+            filteredAds = allAds
+        } else {
+            filteredAds = allAds.filter { active.contains($0.category.id) }
         }
         
-        let filteredAds = allAds.filter { active.contains($0.category.id) }
+        filteredAds = filteredAds.sortedByDate()
         self.state = .loaded(filteredAds)
     }
 }
@@ -122,5 +123,25 @@ private extension Array where Element == CategoryFilter {
     
     var activeCount: Int {
         filter { $0.isSelected }.count
+    }
+}
+
+private extension Array where Element == ClassifiedAd {
+    
+    /// Sorting by date and still prioritizing urgent
+    func sortedByDate() -> [ClassifiedAd] {
+        sorted { element1, element2 in
+            
+            guard element1.isUrgent == element2.isUrgent else {
+                return element1.isUrgent
+            }
+            
+            guard let date1 = element1.creationDate,
+                  let date2 = element2.creationDate else {
+                return element1.creationDate != nil
+            }
+            
+            return date1 > date2
+        }
     }
 }

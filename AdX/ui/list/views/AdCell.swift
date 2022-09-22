@@ -18,6 +18,7 @@ class AdCell: UICollectionViewCell {
     @UsesAutoLayout private var priceLabel = UILabel()
     @UsesAutoLayout private var categoryLabel = UILabel()
     @UsesAutoLayout private var urgentLabel = UILabel()
+    @UsesAutoLayout private var dateLabel = UILabel()
     
     // MARK: - Init
     
@@ -38,6 +39,13 @@ class AdCell: UICollectionViewCell {
         categoryLabel.text = item.category.name
         urgentLabel.isHidden = !item.isUrgent
         priceLabel.text = item.price.formattedPrice
+        
+        if let creationDate = item.creationDate {
+            let dateString = DateUtils.format(date: creationDate, with: "dd/MM/yyyy")
+            dateLabel.text = String(format: "list_item_published_at".localized(), dateString)
+        } else {
+            dateLabel.text = nil
+        }
     }
 }
 
@@ -53,6 +61,7 @@ private extension AdCell {
         setupTitleView()
         setupCategoryView()
         setupPriceView()
+        setupDateView()
     }
     
     func setupUrgentView() {
@@ -118,5 +127,12 @@ private extension AdCell {
         priceLabel.textColor = .systemRed
         priceLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         contentStack.addArrangedSubview(priceLabel)
+    }
+    
+    func setupDateView() {
+        dateLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
+        dateLabel.textColor = .darkGray
+        dateLabel.numberOfLines = 0
+        contentStack.addArrangedSubview(dateLabel)
     }
 }

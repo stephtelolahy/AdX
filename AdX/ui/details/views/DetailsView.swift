@@ -72,8 +72,13 @@ class DetailsView: UIView {
 private extension DetailsView {
     
     func setupView() {
-        
-        // Add to cart
+        setupAddToCardButton()
+        setupScrollView()
+        setupImageView()
+        setupContentStackView()
+    }
+    
+    func setupAddToCardButton() {
         cartButton.setTitleColor(.white, for: .normal)
         cartButton.backgroundColor = .systemRed
         cartButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
@@ -85,7 +90,9 @@ private extension DetailsView {
             cartButton.heightAnchor.constraint(equalToConstant: 64),
             cartButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
         ])
-        
+    }
+    
+    func setupScrollView() {
         // Scroll view
         scrollView.alwaysBounceVertical = true
         scrollView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
@@ -93,12 +100,14 @@ private extension DetailsView {
         
         // Content view
         scrollView.addSubview(contentView)
-        
-        // Image view
+    }
+    
+    func setupImageView() {
         imageView.contentMode = .scaleAspectFit
         contentView.addSubview(imageView)
-        
-        // Stack View
+    }
+    
+    func setupContentStackView() {
         contentStack.axis = .vertical
         contentStack.alignment = .leading
         contentStack.spacing = 8
@@ -125,19 +134,24 @@ private extension DetailsView {
         titleLabel.numberOfLines = 0
         contentStack.addArrangedSubview(titleLabel)
         
-        // Description label
+        setupDescriptionView()
+        setupDateView()
+    }
+    
+    func setupDescriptionView() {
         descriptionLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
         descriptionLabel.numberOfLines = 0
         contentStack.addArrangedSubview(descriptionLabel)
-        
-        // Description label
+    }
+    
+    func setupDateView() {
         dateLabel.font = UIFont.preferredFont(forTextStyle: .caption1)
         dateLabel.textColor = .darkGray
         dateLabel.numberOfLines = 0
         contentStack.addArrangedSubview(dateLabel)
     }
     
-    private func updateConstraints(for size: CGSize) {
+    func updateConstraints(for size: CGSize) {
         
         let headerHeight: CGFloat = max(1, (size.width / 750)) * Constant.headerMinHeight
         
