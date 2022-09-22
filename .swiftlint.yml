@@ -58,7 +58,6 @@ opt_in_rules: # some rules are only to opt-in
   - overridden_super_call
   - override_in_extension
   - pattern_matching_keywords
-  - prefer_nimble
   - prefer_self_in_static_references
   - prefer_zero_over_explicit_init
   - prefixed_toplevel_constant
@@ -103,8 +102,8 @@ custom_rules:
   # swiftlint rules
 included: # paths to include during linting. `--path` is ignored if present.
 
-excluded: # paths to ignore during linting. Takes precedence over `included`.
-  - AdXTests
+# excluded: # paths to ignore during linting. Takes precedence over `included`.
+# - AdXTests
 
 # configurable rules can be customized from this configuration file
 # binary rules can set their severity level
@@ -148,5 +147,7 @@ identifier_name:
     - ad
     - key
     - vc
+    - sut
+    - exp
 
 reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)

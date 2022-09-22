@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// Data structure representing API response
+///
 struct CategoryDto: Decodable {
     let id: Int?
     let name: String?

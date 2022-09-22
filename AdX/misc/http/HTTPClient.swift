@@ -11,7 +11,7 @@ import Combine
 struct HTTPClient {
     let session: URLSession
     let baseURL: String
-    let bgQueue: DispatchQueue
+    let bgQueue = DispatchQueue(label: "bg_parse_queue")
     
     func request<T: Decodable>(_ type: T.Type,
                                path: String,

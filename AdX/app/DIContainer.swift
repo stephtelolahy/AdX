@@ -39,12 +39,11 @@ private extension DIContainer {
     
     static func configuredAdRepository(session: URLSession) -> AdRepositoryProtocol {
         AdRepository(client: HTTPClient(session: session,
-                                        baseURL: "https://raw.githubusercontent.com/leboncoin/paperclip/master",
-                                        bgQueue: DispatchQueue(label: "bg_parse_queue")))
+                                        baseURL: "https://raw.githubusercontent.com/leboncoin/paperclip/master"))
     }
     
     static func configureImageRepository(session: URLSession) -> ImageRepositoryProtocol {
-        ImageRepository(session: session, bgQueue: DispatchQueue(label: "bg_parse_queue"))
+        ImageRepository(session: session)
     }
 }
 

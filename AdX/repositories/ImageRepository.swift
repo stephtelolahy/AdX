@@ -15,7 +15,7 @@ protocol ImageRepositoryProtocol {
 struct ImageRepository: ImageRepositoryProtocol {
     
     let session: URLSession
-    let bgQueue: DispatchQueue
+    let bgQueue = DispatchQueue(label: "bg_parse_queue")
     
     func load(imageURL: URL) -> AnyPublisher<UIImage, Error> {
         download(rawImageURL: imageURL)
