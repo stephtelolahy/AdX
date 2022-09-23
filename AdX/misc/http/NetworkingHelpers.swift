@@ -7,22 +7,7 @@
 
 import Combine
 import Foundation
-/*
-extension Just where Output == Void {
-    static func withErrorType<E>(_ errorType: E.Type) -> AnyPublisher<Void, E> {
-        withErrorType((), E.self)
-    }
-}
 
-extension Just {
-    static func withErrorType<E>(_ value: Output, _ errorType: E.Type
-    ) -> AnyPublisher<Output, E> {
-        Just(value)
-            .setFailureType(to: E.self)
-            .eraseToAnyPublisher()
-    }
-}
-*/
 extension Publisher {
     func sinkToResult(_ result: @escaping (Result<Output, Failure>) -> Void) -> AnyCancellable {
         sink(receiveCompletion: { completion in
@@ -43,13 +28,6 @@ extension Publisher {
             ($0.underlyingError as? Failure) ?? $0
         }
     }
-    
-    /// Holds the downstream delivery of output until the specified time interval passed after the subscription
-    /// Does not hold the output if it arrives later than the time threshold
-    ///
-    /// - Parameters:
-    ///   - interval: The minimum time interval that should elapse after the subscription.
-    /// - Returns: A publisher that optionally delays delivery of elements to the downstream receiver.
     
     func ensureTimeSpan(_ interval: TimeInterval) -> AnyPublisher<Output, Failure> {
         let timer = Just<Void>(())

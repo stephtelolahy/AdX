@@ -4,7 +4,6 @@
 //
 //  Created by TELOLAHY Hugues Stéphano on 23/09/2022.
 //
-// swiftlint:disable overridden_super_call
 // swiftlint:disable line_length
 
 import XCTest

@@ -76,6 +76,10 @@ private extension DetailsView {
         setupScrollView()
         setupImageView()
         setupContentStackView()
+        setupCategoryView()
+        setupTitleView()
+        setupDescriptionView()
+        setupDateView()
     }
     
     func setupAddToCardButton() {
@@ -112,30 +116,31 @@ private extension DetailsView {
         contentStack.alignment = .leading
         contentStack.spacing = 8
         contentView.addSubview(contentStack)
-        
+    }
+    
+    func setupUrgentView() {
         urgentLabel.font = UIFont.boldSystemFont(ofSize: 14)
         urgentLabel.text = " \("list_item_urgent".localized().uppercased()) "
         urgentLabel.textColor = .white
         urgentLabel.backgroundColor = .systemRed
         urgentLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         contentStack.addArrangedSubview(urgentLabel)
-        
-        // Category label
+    }
+    
+    func setupCategoryView() {
         categoryLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
         categoryLabel.textColor = .darkGray
         categoryLabel.numberOfLines = 1
         categoryLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         contentStack.addArrangedSubview(categoryLabel)
-        
-        // Title label
+    }
+    
+    func setupTitleView() {
         titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         titleLabel.setContentHuggingPriority(.defaultLow - 1, for: .horizontal)
         titleLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         titleLabel.numberOfLines = 0
         contentStack.addArrangedSubview(titleLabel)
-        
-        setupDescriptionView()
-        setupDateView()
     }
     
     func setupDescriptionView() {

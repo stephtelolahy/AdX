@@ -4,7 +4,6 @@
 //
 //  Created by TELOLAHY Hugues Stéphano on 22/09/2022.
 //
-// swiftlint:disable overridden_super_call
 
 import XCTest
 import Combine
